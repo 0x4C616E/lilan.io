@@ -75,9 +75,9 @@ body {
   opacity: 0;
   transition: opacity 0.35s var(--ease);
   background: radial-gradient(
-    240px circle at var(--mx, 50%) var(--my, 50%),
-    rgba(192, 132, 252, 0.13),
-    transparent 65%
+    280px circle at var(--mx, 50%) var(--my, 50%),
+    rgba(192, 132, 252, 0.22),
+    transparent 70%
   );
 }
 .card:hover::after { opacity: 1; }
