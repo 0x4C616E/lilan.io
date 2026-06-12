@@ -1,0 +1,140 @@
+---
+import '../styles/global.css';
+
+interface Props {
+  title?: string;
+  description?: string;
+}
+
+const SITE_TITLE = 'LiLan';
+const SITE_DESCRIPTION =
+  'LiLan.io is a growing collection of free online tools. Each tool lives on its own subdomain, simple and free to use.';
+
+const { title, description = SITE_DESCRIPTION } = Astro.props;
+const pageTitle = title ? `${title} | ${SITE_TITLE}` : `${SITE_TITLE} - Free Online Tools`;
+const canonical = new URL(Astro.url.pathname, Astro.site);
+const year = new Date().getFullYear();
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonical} />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content={canonical} />
+    <meta name="theme-color" content="#050506" />
+  </head>
+  <body>
+    <div class="blobs" aria-hidden="true">
+      <div class="blob blob-1"></div>
+      <div class="blob blob-2"></div>
+      <div class="blob blob-3"></div>
+    </div>
+
+    <nav>
+      <div class="container nav-inner">
+        <a href="/" class="brand" aria-label="LiLan home">
+          <svg width="30" height="30" viewBox="0 0 48 48" xmlns="http://www.w3.org/2000/svg">
+            <defs>
+              <linearGradient id="lg1" x1="0" y1="0" x2="1" y2="1">
+                <stop offset="0" stop-color="#c084fc" />
+                <stop offset="1" stop-color="#818cf8" />
+              </linearGradient>
+              <linearGradient id="lg2" x1="1" y1="1" x2="0" y2="0">
+                <stop offset="0" stop-color="#f0abfc" />
+                <stop offset="1" stop-color="#a78bfa" />
+              </linearGradient>
+            </defs>
+            <rect width="48" height="48" rx="12" fill="#0a0a0c" />
+            <path d="M15 7 L15 33 L33 33" fill="none" stroke="url(#lg1)" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" />
+            <path d="M33 41 L33 15 L15 15" fill="none" stroke="url(#lg2)" stroke-width="6.5" stroke-linecap="round" stroke-linejoin="round" opacity="0.9" />
+          </svg>
+          <span class="brand-name">Li<em>Lan</em></span>
+        </a>
+        <div class="nav-links">
+          <a href="/#tools">Tools</a>
+          <a href="/#how">How it works</a>
+        </div>
+      </div>
+    </nav>
+
+    <main>
+      <slot />
+    </main>
+
+    <footer>
+      <div class="container footer-inner">
+        <span>&copy; {year} LiLan LLC. All rights reserved.</span>
+        <span><a href="mailto:hello@lilan.io">hello@lilan.io</a></span>
+      </div>
+    </footer>
+
+    <script>
+      const reduced = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+      if (!reduced) {
+        // ---- scroll reveal with stagger ----
+        const targets = document.querySelectorAll(
+          '.hero-badge, .hero h1, .hero p, .hero-actions, .section-head, .card, .pill'
+        );
+        const indexInParent = new Map();
+        targets.forEach((el) => {
+          const parent = el.parentElement;
+          const i = (indexInParent.get(parent) ?? 0);
+          indexInParent.set(parent, i + 1);
+          el.classList.add('fx-reveal');
+          (el as HTMLElement).style.setProperty('--d', `${Math.min(i * 0.09, 0.5)}s`);
+        });
+
+        const io = new IntersectionObserver(
+          (entries) => {
+            for (const e of entries) {
+              if (e.isIntersecting) {
+                e.target.classList.add('in');
+                io.unobserve(e.target);
+              }
+            }
+          },
+          { threshold: 0.15, rootMargin: '0px 0px -40px 0px' }
+        );
+        targets.forEach((el) => io.observe(el));
+
+        // ---- cursor effects ----
+        const blobs = document.querySelectorAll('.blob');
+        const cards = document.querySelectorAll('.card');
+        const depth = [26, 40, 32];
+        let raf = 0;
+        let mx = 0, my = 0;
+
+        const apply = () => {
+          raf = 0;
+          // ambient blobs drift toward the cursor (parallax)
+          const dx = mx / window.innerWidth - 0.5;
+          const dy = my / window.innerHeight - 0.5;
+          blobs.forEach((b, i) => {
+            (b as HTMLElement).style.translate = `${dx * (depth[i] ?? 24)}px ${dy * (depth[i] ?? 24)}px`;
+          });
+          // spotlight follows the cursor inside each card
+          cards.forEach((card) => {
+            const r = card.getBoundingClientRect();
+            (card as HTMLElement).style.setProperty('--mx', `${mx - r.left}px`);
+            (card as HTMLElement).style.setProperty('--my', `${my - r.top}px`);
+          });
+        };
+
+        window.addEventListener('mousemove', (ev) => {
+          mx = ev.clientX;
+          my = ev.clientY;
+          if (!raf) raf = requestAnimationFrame(apply);
+        }, { passive: true });
+      }
+    </script>
+  </body>
+</html>
