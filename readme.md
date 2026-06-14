@@ -1,6 +1,10 @@
 # LiLan.io
 
-Landing page for LiLan LLC. A hub for free online tools, where each tool lives on its own subdomain (`tool.lilan.io`).
+Landing page for LiLan LLC. A cabinet of free, fun curiosities (personality tests and more), where each one lives on its own subdomain (`name.lilan.io`).
+
+## Live curiosities
+
+- `testme.lilan.io` - MBTI-style personality test
 
 ## Stack
 

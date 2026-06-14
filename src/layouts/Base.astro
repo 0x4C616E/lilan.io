@@ -8,10 +8,10 @@ interface Props {
 
 const SITE_TITLE = 'LiLan';
 const SITE_DESCRIPTION =
-  'LiLan.io is a growing collection of free online tools. Each tool lives on its own subdomain, simple and free to use.';
+  'LiLan.io is a growing cabinet of free, fun curiosities, from personality tests to whatever comes next. Each one lives on its own subdomain, simple and free to use.';
 
 const { title, description = SITE_DESCRIPTION } = Astro.props;
-const pageTitle = title ? `${title} | ${SITE_TITLE}` : `${SITE_TITLE} - Free Online Tools`;
+const pageTitle = title ? `${title} | ${SITE_TITLE}` : `${SITE_TITLE} - Free Online Curiosities`;
 const canonical = new URL(Astro.url.pathname, Astro.site);
 const year = new Date().getFullYear();
 ---
@@ -59,7 +59,7 @@ const year = new Date().getFullYear();
           <span class="brand-name">Li<em>Lan</em></span>
         </a>
         <div class="nav-links">
-          <a href="/#tools">Tools</a>
+          <a href="/#curiosities">Curiosities</a>
           <a href="/#how">How it works</a>
         </div>
       </div>

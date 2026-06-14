@@ -5,54 +5,61 @@ import Base from '../layouts/Base.astro';
 <Base>
   <!-- Hero -->
   <header class="hero container">
-    <span class="hero-badge">✦ Free tools, no signup required</span>
+    <span class="hero-badge">✦ Free to try, no signup</span>
     <h1>
-      Simple tools for<br />
-      <span class="gradient-text">everyday decisions.</span>
+      A cabinet of<br />
+      <span class="gradient-text">curiosities.</span>
     </h1>
     <p>
-      LiLan.io is home to a growing collection of free online tools.
+      LiLan.io is a growing collection of free, fun things to try,
+      from personality tests to whatever comes next.
       Each one lives at its own corner of the web:
-      <code>tool.lilan.io</code>
+      <code>name.lilan.io</code>
     </p>
     <div class="hero-actions">
-      <a href="#tools" class="btn btn-primary">Browse tools</a>
+      <a href="#curiosities" class="btn btn-primary">Explore curiosities</a>
       <a href="#how" class="btn btn-ghost">How it works</a>
     </div>
   </header>
 
-  <!-- Tools grid -->
-  <section id="tools">
+  <!-- Curiosities grid -->
+  <section id="curiosities">
     <div class="container">
       <div class="section-head">
-        <h2>The toolbox</h2>
-        <p>We are just getting started. New tools land here as they are built.</p>
+        <h2>The cabinet</h2>
+        <p>We are just getting started. New curiosities land here as they are built.</p>
       </div>
       <div class="bento">
-        <div class="card card-featured">
-          <span class="badge-soon">In the works</span>
-          <div class="card-icon">🛠️</div>
-          <h3>First tool loading...</h3>
+        <a
+          href="https://testme.lilan.io/"
+          class="card card-featured card-link"
+          target="_blank"
+          rel="noopener"
+        >
+          <span class="badge-live">Live</span>
+          <div class="card-icon">🧭</div>
+          <h3>Which type are you?</h3>
           <p>
-            Our first tool is being designed right now. It will show up here
-            with its own subdomain the moment it is ready. No paywalls, no accounts,
-            just open it and use it.
+            A quick MBTI-style personality test that maps how you think, decide,
+            and recharge into one of sixteen types. No accounts, no fuss,
+            just answer and find out.
           </p>
-        </div>
+          <span class="card-cta">Take the test at testme.lilan.io →</span>
+        </a>
         <div class="card">
-          <span class="badge-soon">Soon</span>
+          <span class="badge-soon">Always</span>
           <div class="card-icon">⚡</div>
-          <h3>Fast &amp; free</h3>
-          <p>Every LiLan tool is free to use and built to load instantly.</p>
+          <h3>Free &amp; instant</h3>
+          <p>Every LiLan curiosity is free to use and built to load in a blink.</p>
         </div>
         <div class="card card-slot">
-          <p>Future tool slot<br /><strong>•</strong></p>
+          <p>Next curiosity brewing<br /><strong>•</strong></p>
         </div>
         <div class="card card-slot">
-          <p>Future tool slot<br /><strong>•</strong></p>
+          <p>Future curiosity slot<br /><strong>•</strong></p>
         </div>
         <div class="card card-slot">
-          <p>Future tool slot<br /><strong>•</strong></p>
+          <p>Future curiosity slot<br /><strong>•</strong></p>
         </div>
       </div>
     </div>
@@ -62,15 +69,15 @@ import Base from '../layouts/Base.astro';
   <section id="how">
     <div class="container">
       <div class="section-head">
-        <h2>One domain, many tools</h2>
+        <h2>One domain, many curiosities</h2>
         <p>
-          LiLan.io is the front door. Every tool gets its own subdomain,
-          so you can bookmark exactly what you need.
+          LiLan.io is the front door. Every curiosity gets its own subdomain,
+          so you can bookmark exactly the one you love.
         </p>
       </div>
       <div class="subdomain-demo">
-        <span class="pill"><strong>tool-one</strong>.lilan.io</span>
-        <span class="pill"><strong>tool-two</strong>.lilan.io</span>
+        <span class="pill"><strong>testme</strong>.lilan.io</span>
+        <span class="pill"><strong>next-one</strong>.lilan.io</span>
         <span class="pill"><strong>your-idea</strong>.lilan.io</span>
       </div>
     </div>
